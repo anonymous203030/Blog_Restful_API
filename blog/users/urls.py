@@ -15,7 +15,7 @@ urlpatterns = [
         #PROFILE
     path(f'{p}/create/', UserProfileCreateViewSet.as_view(), name='create_profile'),
     path(f'{p}/list/', UserProfileListViewSet.as_view(), name='list_profile'),
-    path(f'{p}/change/<int:pk>/', UserProfileDetailViewSet.as_view(), name='change_profile'),
+    path(f'{p}/detail/<int:pk>/', UserProfileDetailViewSet.as_view(), name='change_profile'),
 
 
 

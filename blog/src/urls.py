@@ -27,7 +27,7 @@ schema_view = get_schema_view(
       default_version='v1',
       description="Blog API Description",
       terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="https://www.linkedin.com/in/aram-simonyan-58a7281b5"),
+      contact=openapi.Contact(email="aram.simonyan.03@gmail.com"),
       license=openapi.License(name="BSD License"),
    ),
    public=True,

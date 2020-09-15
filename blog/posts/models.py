@@ -12,3 +12,17 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+class UserPostRelation(models.Model):
+    RATE_CHOICES = (
+        (1,'*'),
+        (2, '**'),
+        (3, '***'),
+        (4, '****'),
+        (5, '*****')
+    )
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    like = models.BooleanField(default=False)
+    saved = models.BooleanField(default=False)
+    rating = models.CharField(choices=RATE_CHOICES, max_length=100)
