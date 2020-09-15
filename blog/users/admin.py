@@ -24,7 +24,7 @@ admin.site.register(User, UsersAdmin)
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'birthday', 'gender', 'owner', )
-    list_filter = ('birthday', 'gender', )
+    list_filter = ('birthday', 'gender','owner' )
     ordering = ('first_name', )
 
 admin.site.register(UserProfile, UserProfileAdmin)

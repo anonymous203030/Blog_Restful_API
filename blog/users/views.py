@@ -1,24 +1,24 @@
-from django.shortcuts import render
-
-from django.shortcuts import render
-
-# Create your views here.
 from rest_framework import generics, status
 from rest_framework.exceptions import ValidationError
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
-
-from .models import User
-from .serializers import LoginSerializer, UserSerializer
+from rest_framework import viewsets
+#
+from .models import User, UserProfile
+from .permissions import IsOwner
+from .serializers import LoginSerializer, UserSerializer, UserProfileSerializer
 from .serializers import RegisterSerializer
 
-class RegisterView(generics.GenericAPIView):
 
+# USERS VIEWS
+
+class RegisterViewSet(generics.GenericAPIView):
     serializer_class = RegisterSerializer
 
     def post(self, request):
-        user=request.data
-        serializer=self.serializer_class(data=user)
+        user = request.data
+        serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
@@ -26,10 +26,12 @@ class RegisterView(generics.GenericAPIView):
 
         return Response(user_data, status=status.HTTP_201_CREATED)
 
-class LoginAPiView(generics.GenericAPIView):
+
+class LoginAPiViewSet(generics.GenericAPIView):
     serializer_class = LoginSerializer
+
     def post(self, request):
-        serializer=self.serializer_class(data=request.data)
+        serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -39,7 +41,25 @@ class LoginAPiView(generics.GenericAPIView):
             raise ValidationError('You have already signed up')
         serializer.save(user=self.request.user)
 
-class UsersList(generics.ListAPIView):
+
+class UsersListViewSet(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (IsAuthenticated,)
+
+    # USER PROFILEViewSets
+
+class UserProfileListViewSet(generics.ListAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
     permission_classes = (IsAuthenticated, )
+
+class UserProfileCreateViewSet(generics.CreateAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+    permission_classes = (IsAuthenticated, )
+
+class UserProfileDetailViewSet(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+    permission_classes = (IsAdminUser, IsOwner, )
