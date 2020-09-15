@@ -1,6 +1,13 @@
-from django.urls import path
+from django.urls import path, include
 
-from .views import PostDetail, PostList, PostCreate
+from .views import PostDetail, PostList, PostCreate, UserPostRelationViewSet
+
+
+from rest_framework.routers import SimpleRouter
+
+router = SimpleRouter()
+router.register(r'relations', UserPostRelationViewSet)
+
 
 urlpatterns = [
     path('list/', PostList.as_view()),
@@ -8,3 +15,4 @@ urlpatterns = [
     path('create/', PostCreate.as_view()),
 
 ]
+urlpatterns += router.urls

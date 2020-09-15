@@ -8,7 +8,11 @@ class Post(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE,
+                              related_name='my_posts')
+
+    who_liked = models.ManyToManyField(User, through='UserPostRelation'
+                                       ,related_name='liked')
     def __str__(self):
         return self.title
 
@@ -21,8 +25,12 @@ class UserPostRelation(models.Model):
         (5, '*****')
     )
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     like = models.BooleanField(default=False)
     saved = models.BooleanField(default=False)
-    rating = models.CharField(choices=RATE_CHOICES, max_length=100)
+    rating = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
+    reacted_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'Owner{self.user.username} ,Post:{Post.title}, Rating:{self.rating}'
