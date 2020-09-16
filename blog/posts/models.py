@@ -3,7 +3,7 @@ from django.db import models
 from users.models import User
 
 
-class Post(models.Model):
+class Posts(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -26,11 +26,11 @@ class UserPostRelation(models.Model):
     )
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.OneToOneField(Posts, on_delete=models.CASCADE)
     like = models.BooleanField(default=False)
     saved = models.BooleanField(default=False)
     rating = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
     reacted_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'Owner{self.user.username} ,Post:{Post.title}, Rating:{self.rating}'
+        return f'Owner{self.user.username} ,Post:{Posts.title}, Rating:{self.rating}'
