@@ -4,7 +4,7 @@ from .views import (
     PostDetail,
     PostCreate,
     UserPostRelationViewSet,
-    PostListView,
+    PostListView, CustomPostViewSet,
 
 )
 
@@ -20,6 +20,8 @@ urlpatterns = [
     path('list/', PostListView.as_view(), name='list'),
     path('list/<int:pk>/', PostDetail.as_view()),
     path('create/', PostCreate.as_view()),
+    path('custom/', CustomPostViewSet.as_view()),
+
 
 ]
 urlpatterns += router.urls
