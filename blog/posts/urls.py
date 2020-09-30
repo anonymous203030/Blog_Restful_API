@@ -15,12 +15,12 @@ router = SimpleRouter()
 router.register(r'relations', UserPostRelationViewSet)
 
 app_name = 'posts'
-
+v = 'api/v1/'
 urlpatterns = [
-    path('list/', PostListView.as_view(), name='list'),
-    path('list/<int:pk>/', PostDetail.as_view()),
-    path('create/', PostCreate.as_view()),
-    path('custom/', CustomPostViewSet.as_view()),
+    path(f'{v}list/', PostListView.as_view(), name='list'),
+    path(f'{v}list/<int:pk>/', PostDetail.as_view()),
+    path(f'{v}create/', PostCreate.as_view()),
+    path(f'{v}custom/', CustomPostViewSet.as_view()),
 
 
 ]

@@ -3,3 +3,7 @@ djangorestframework
 drf-yasg
 channels
 asgiref
+django-widget-tweaks
+Pillow==7.2.0
+redis
+Celery

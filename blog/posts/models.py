@@ -33,4 +33,4 @@ class UserPostRelation(models.Model):
     reacted_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'Owner{self.user.username} ,Post:{Posts.title}, Rating:{self.rating}'
+        return f'Owner{self.user}, Post:{Posts.title}, Rating:{self.rating}'
