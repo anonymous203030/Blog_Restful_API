@@ -1,0 +1,9 @@
+services:
+  #web is a service name (can type what u want)
+  web:
+    build: .
+    command: python3 blog/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/blog
+    ports:
+      - "8000:8000"

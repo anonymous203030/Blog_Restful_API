@@ -1,0 +1,19 @@
+| Dockerfile  |
+---------------
+FROM python:3 // the version of Python
+RUN mkdir /BlogAPI  // create a directory BlogAPI
+WORKDIR /BlogAPI   // make it work
+COPY . /blog	//copy from blog directory
+RUN pip3 install -r requirements.txt	// running a command
+
+----------------------
+| docker-compose.yml |
+----------------------
+services:
+	web:
+		build: .
+		command: python3 blog/manage.py runserver 0.0.0.0:8000
+		volumes:
+		_ .:blog
+		ports:
+		- "8000:8000"
