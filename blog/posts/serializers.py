@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
 
-from .models import Posts, UserPostRelation
+from .models import Posts, UserPostRelation, PostImages
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -19,8 +19,14 @@ class PostSerializer(serializers.ModelSerializer):
     def get_saves_count(self, instance):
         return UserPostRelation.objects.filter(post=instance, saved=True).count()
 
+class PostImagesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PostImages
+        fields = ('id', 'images', 'posts', )
+
+
 class UserPostRelationSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserPostRelation
-        fields = ('user', 'post', 'like', 'saved', 'rating', 'reacted_at',)
+        fields = ('id', 'user', 'post', 'like', 'saved', 'rating', 'reacted_at',)
 

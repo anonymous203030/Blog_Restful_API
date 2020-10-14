@@ -16,6 +16,15 @@ class Posts(models.Model):
     def __str__(self):
         return self.title
 
+class PostImages(models.Model):
+    images = models.ImageField(upload_to='post_image/')
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return f'Post:{self.post} | Images: {self.images}'
+
+
 class UserPostRelation(models.Model):
     RATE_CHOICES = (
         (1,'*'),
