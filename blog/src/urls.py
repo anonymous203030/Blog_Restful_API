@@ -17,12 +17,13 @@ schema_view = get_schema_view(
    public=True,
    permission_classes=(permissions.AllowAny,),
 )
+v = 'api/v1/'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('posts/', include('posts.urls')),
-    path('users/', include('users.urls')),
-    path('todo/', include('todo.backend.todos.urls')),
+    path(f'{v}posts/', include('posts.urls')),
+    path(f'{v}users/', include('users.urls')),
+    path(f'{v}todo/', include('todo.backend.todos.urls')),
     #
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
