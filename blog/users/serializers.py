@@ -1,10 +1,12 @@
 
+
 from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed
 
 
 from .models import User, UserProfile
 from django.contrib import auth
+
 
 
 class RegisterSerializer(serializers.ModelSerializer):

@@ -9,7 +9,7 @@ class UsersAdmin(admin.ModelAdmin):
     ordering = ('created_at', )
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Permissions', {'fields': ('is_admin', 'is_staff', 'is_student')}),
+        ('Permissions', {'fields': ('is_admin', 'is_staff',)}),
     )
 
     add_fieldsets = (
