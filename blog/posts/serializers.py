@@ -22,7 +22,7 @@ class PostSerializer(serializers.ModelSerializer):
 class PostImagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostImages
-        fields = ('id', 'images', 'posts', )
+        fields = ('id', 'images', 'post', )
 
 
 class UserPostRelationSerializer(serializers.ModelSerializer):
