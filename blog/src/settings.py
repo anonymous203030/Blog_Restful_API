@@ -8,7 +8,7 @@ SECRET_KEY = '^8zln(b3lvgulb@0l2hc3v9(df5t6v3s534&^mm^e!$1%_x)0u'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 
