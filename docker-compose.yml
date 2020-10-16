@@ -2,8 +2,13 @@ services:
   #web is a service name (can type what u want)
   web:
     build: .
-    command: python3 blog/manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/blog
+      - .:/BlogAPI
     ports:
       - "8000:8000"
+    command: bash -c "
+      ls &&
+      cd blog &&
+      python3 manage.py makemigrations &&
+      python3 manage.py migrate &&
+      python3 manage.py runserver 127.0.0.1:8000 "

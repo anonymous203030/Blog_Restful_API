@@ -1,3 +1,17 @@
+
+sudo docker build .
+
+sudo docker-compose up
+
+sudo docker tag 019b21aa8d25 anonymous203030/blogging:first
+sudo docker push anonymous203030/blogging
+
+
+sudo docker image rm "image id"
+sudo docker container rm "container id"
+docker image prune // remove unused
+
+
 | Dockerfile  |
 ---------------
 FROM python:3 // the version of Python
@@ -17,3 +31,5 @@ services:
 		_ .:blog
 		ports:
 		- "8000:8000"
+
+

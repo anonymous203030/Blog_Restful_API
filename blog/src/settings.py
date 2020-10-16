@@ -27,16 +27,9 @@ INSTALLED_APPS = [
     #3-rd party
     'rest_framework',
     'drf_yasg',
-    'corsheaders',
-    'widget_tweaks',
+    'django_filters',
 
 ]
-# new!
-CORS_ORIGIN_WHITELIST = (
-'http://localhost:3000',
-'http://localhost:8000',
-)
-#
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -46,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'src.urls'
@@ -126,10 +120,10 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 
 
+
 }
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TASK_SERIALIZER = 'json'
+LOGIN_URL = 'admin/login/'
+LOGOUT_URL = 'admin/logout/'
+
+
