@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from rest_framework_simplejwt.tokens import RefreshToken
 
 
+
 class UserManage(BaseUserManager):
     def create_user(self, username, email, password=None):
 
