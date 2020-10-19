@@ -16,10 +16,15 @@ class Posts(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        app_label = 'd61nc0nbgsq65g'
+
 class PostImages(models.Model):
     images = models.ImageField(upload_to='post_image/')
     post = models.ForeignKey(Posts, on_delete=models.CASCADE)
 
+    class Meta:
+        app_label = 'd61nc0nbgsq65g'
 
     def __str__(self):
         return f'Post:{self.post} | Images: {self.images}'
@@ -40,6 +45,9 @@ class UserPostRelation(models.Model):
     saved = models.BooleanField(default=False)
     rating = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
     reacted_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        app_label = 'd61nc0nbgsq65g'
 
     def __str__(self):
         return f'Owner{self.user}, Post:{Posts.title}, Rating:{self.rating}'

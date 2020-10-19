@@ -72,10 +72,18 @@ DATABASES = {
     },
     'users': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '*',
-        'USER': '*',
-        'PASSWORD': '*',
-        'HOST': '*',
+        'NAME': 'dee41dc7ts59ga',
+        'USER': 'djlbldcxpzonpy',
+        'PASSWORD': '27cef3a06ca260dac3ebb5f2d75bb471ce9ed29ec914a5ea08b116c9365bd5c5',
+        'HOST': 'ec2-46-137-84-140.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
+    },
+    'posts': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd61nc0nbgsq65g',
+        'USER': 'yjqydwjrjcmydr',
+        'PASSWORD': '1dc710c73f90ae85ee61b51c6f5e4bba39bbad75242a203d50bc2388e98418bf',
+        'HOST': 'ec2-46-137-123-136.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -126,8 +134,6 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE":5,
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-
-
 
 }
 

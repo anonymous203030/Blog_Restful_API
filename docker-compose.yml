@@ -11,7 +11,10 @@ services:
       ls &&
       cd blog &&
       python3 manage.py makemigrations &&
+      python3 manage.py migrate --database=posts &&
+      python3 manage.py migrate --database=users &&
       python3 manage.py migrate &&
       service rabbitmq-server start &&
       service rabbitmq-server status &&
+
       python3 manage.py runserver 0.0.0.0:8000"

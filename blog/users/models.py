@@ -42,6 +42,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManage()
 
+
+
     def __str__(self):
         return self.email
 
@@ -52,6 +54,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             'refresh': str(refresh),
             'access': str(refresh.access_token)
         }
+
 class UserProfile(models.Model):
     GENDER = (
         ('M', 'Male'),
@@ -65,6 +68,9 @@ class UserProfile(models.Model):
     gender = models.CharField(choices=GENDER, max_length=100, )
 
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    class Meta:
+        app_label = 'djlbldcxpzonpy'
 
     def __str__(self):
         return f'{User.username}:{self.first_name} {self.last_name}'
