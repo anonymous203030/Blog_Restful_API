@@ -9,3 +9,6 @@ djangorestframework-simplejwt==4.4.0
 openapi==1.1.0
 django-filter==2.3.0
 Pillow==7.2.0
+Celery==5.0.0
+redis==3.5.3
+psycopg2==2.8.6

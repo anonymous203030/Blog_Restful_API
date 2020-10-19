@@ -6,9 +6,12 @@ services:
       - .:/BlogAPI
     ports:
       - "8000:8000"
+      - "9200:9200"
     command: bash -c "
       ls &&
       cd blog &&
       python3 manage.py makemigrations &&
       python3 manage.py migrate &&
+      service rabbitmq-server start &&
+      service rabbitmq-server status &&
       python3 manage.py runserver 0.0.0.0:8000"
