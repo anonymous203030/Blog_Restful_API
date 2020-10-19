@@ -1,0 +1,12 @@
+
+----------
+celery -A project_name worker -l INFO
+----------
+------------------
+./manage.py shell|
+------------------
+1.
+add.delay(x,y)
+2.
+add.apply_async((x,y), countdown=5)
+

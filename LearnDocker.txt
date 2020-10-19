@@ -1,10 +1,18 @@
 
+
+sudo docker run -it blog_web /bin/bash ??//??// get into container
+
 sudo docker build .
 
 sudo docker-compose up
 
 sudo docker tag 019b21aa8d25 anonymous203030/blogging:first
 sudo docker push anonymous203030/blogging
+
+sudo docker exec -it blog_web_1  python3 blog/manage.py migrate 	//how to execute any command in docker container
+
+
+sudo docker-compose up --build	//rebuild image!TO make changes in image!
 
 
 sudo docker image rm "image id"
