@@ -11,8 +11,7 @@ services:
       ls &&
       cd BlogAPI &&
       python3 manage.py makemigrations &&
-      python3 manage.py migrate --database=posts &&
-      python3 manage.py migrate --database=users &&
+      python3 manage.py migrate --database=users_db &&
       python3 manage.py migrate &&
       service rabbitmq-server start &&
       service rabbitmq-server status &&
