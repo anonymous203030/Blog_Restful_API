@@ -18,6 +18,7 @@ class UserManage(BaseUserManager):
         user.set_password(password)
         user.save()
         return user
+
     def create_superuser(self, username, email, password):
         if password is None:
             raise TypeError('Password should not to be none.')
@@ -42,7 +43,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManage()
 
-
+    class Meta:
+        app_label = 'users'
 
     def __str__(self):
         return self.email
@@ -68,10 +70,9 @@ class UserProfile(models.Model):
     gender = models.CharField(choices=GENDER, max_length=100, )
 
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
-
+    #
     class Meta:
-        app_label = 'djlbldcxpzonpy'
+        app_label = 'users'
 
     def __str__(self):
         return f'{User.username}:{self.first_name} {self.last_name}'
-

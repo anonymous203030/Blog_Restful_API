@@ -3,13 +3,13 @@ services:
   web:
     build: .
     volumes:
-      - .:/BlogAPI
+      - .:/blog
     ports:
       - "8000:8000"
       - "9200:9200"
     command: bash -c "
       ls &&
-      cd blog &&
+      cd BlogAPI &&
       python3 manage.py makemigrations &&
       python3 manage.py migrate --database=posts &&
       python3 manage.py migrate --database=users &&

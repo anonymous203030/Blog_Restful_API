@@ -65,12 +65,13 @@ WSGI_APPLICATION = 'src.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-    'users': {
+    'users_db': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'dee41dc7ts59ga',
         'USER': 'djlbldcxpzonpy',
@@ -78,17 +79,10 @@ DATABASES = {
         'HOST': 'ec2-46-137-84-140.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     },
-    'posts': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd61nc0nbgsq65g',
-        'USER': 'yjqydwjrjcmydr',
-        'PASSWORD': '1dc710c73f90ae85ee61b51c6f5e4bba39bbad75242a203d50bc2388e98418bf',
-        'HOST': 'ec2-46-137-123-136.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
-    }
 }
-
-
+DATABASE_ROUTERS = ['src.routers.AuthRouter'
+    # , 'posts.routers.PrimaryReplicaRouter'
+                    ]
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -128,7 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # new!
-AUTH_USER_MODEL = "users.User"
+
 
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.PageNumberPagination",
@@ -136,6 +130,8 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 
 }
+# AUTH_USER_MODEL = "user_data.User"
+AUTH_USER_MODEL = "users.User"
 
 LOGIN_URL = 'admin/login/'
 LOGOUT_URL = 'admin/logout/'
@@ -145,4 +141,3 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
-

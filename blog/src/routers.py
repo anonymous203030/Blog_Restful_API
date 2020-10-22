@@ -1,36 +1,47 @@
 
 
+class AuthRouter:
+    """
+    A router to control all database operations on models in the
+    auth and contenttypes applications.
+    """
+    users = {'users', 'auth', 'contenttypes'}
 
-
-class CheckerRouter:
     def db_for_read(self, model, **hints):
-        if model._meta.app_label == 'posts':
-            return 'd61nc0nbgsq65g'
-        elif model._meta.app_label == 'users':
-            return 'dee41dc7ts59ga'
+        """
+        Attempts to read auth and contenttypes models go to auth_db.
+        """
+        if model._meta.app_label in self.users:
+            return 'users_db'
         return 'default'
 
     def db_for_write(self, model, **hints):
-        if model._meta.app_label == 'posts':
-            return 'd61nc0nbgsq65g'
-        elif model._meta.app_label == 'users':
-            return 'dee41dc7ts59ga'
+        """
+        Attempts to write auth and contenttypes models go to auth_db.
+        """
+        if model._meta.app_label in self.users:
+            return 'users_db'
         return 'default'
 
     def allow_relation(self, obj1, obj2, **hints):
-        if obj1._meta.app_label == 'posts' or obj2._meta.app_label == 'posts':
-            return True
-        elif 'posts' not in [obj1._meta.app_label, obj2._meta.app_label]:
-            return True
-        elif obj1._meta.app_label == 'users' or obj2._meta.app_label == 'users':
-            return True
-        elif 'users' not in [obj1._meta.app_label, obj2._meta.app_label]:
-            return True
-        return False
+        """
+        Allow relations if a model in the auth or contenttypes apps is
+        involved.
+        # """
+        # if (
+        #     obj1._meta.app_label in self.users or
+        #     obj2._meta.app_label in self.users
+        # ):
+        #    return True
+        # return None
+        return True
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
-        if app_label == 'posts':
-            return db == 'd61nc0nbgsq65g'
-        elif app_label == 'users':
-            return db == 'djlbldcxpzonpy'
-        return None
+        """
+        Make sure the auth and contenttypes apps only appear in the
+        'auth_db' database.
+        """
+        # if app_label in self.users:
+        #     return db == 'users_db'
+        # return db == 'default'
+        return True
