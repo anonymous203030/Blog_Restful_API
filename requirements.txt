@@ -5,10 +5,10 @@ channels==2.4.0
 asgiref==3.2.10
 django-widget-tweaks==1.4.8
 Docker==4.3.1
-djangorestframework-simplejwt==4.3.0
 openapi==1.1.0
 django-filter==2.3.0
 Pillow==7.2.0
 Celery==5.0.0
 redis==3.5.3
 psycopg2==2.8.6
+djangorestframework-simplejwt
