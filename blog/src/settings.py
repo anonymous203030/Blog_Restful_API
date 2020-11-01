@@ -79,7 +79,18 @@ DATABASES = {
         'HOST': 'ec2-46-137-84-140.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     },
+    # 'posts_db': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'd61nc0nbgsq65g',
+    #     'USER': 'yjqydwjrjcmydr',
+    #     'PASSWORD': '1dc710c73f90ae85ee61b51c6f5e4bba39bbad75242a203d50bc2388e98418bf',
+    #     'HOST': 'ec2-46-137-123-136.eu-west-1.compute.amazonaws.com',
+    #     'PORT': '5432',
+    # }
 }
+# 1dc710c73f90ae85ee61b51c6f5e4bba39bbad75242a203d50bc2388e98418bf
+# psql --dbname=d61nc0nbgsq65g --host=ec2-46-137-123-136.eu-west-1.compute.amazonaws.com --port=5432 -U yjqydwjrjcmydr -W
+
 DATABASE_ROUTERS = ['src.routers.AuthRouter'
     # , 'posts.routers.PrimaryReplicaRouter'
                     ]
