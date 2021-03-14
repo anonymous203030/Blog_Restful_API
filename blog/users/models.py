@@ -1,9 +1,8 @@
 from django.db import models
 
-from django.contrib.auth.models import AbstractBaseUser,  BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db.models.signals import post_save
 from rest_framework_simplejwt.tokens import RefreshToken
-
 
 
 class UserManage(BaseUserManager):
@@ -28,6 +27,7 @@ class UserManage(BaseUserManager):
         user.is_staff = True
         user.save()
         return user
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=50, unique=True, db_index=True)
@@ -57,6 +57,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             'access': str(refresh.access_token)
         }
 
+
 class UserProfile(models.Model):
     GENDER = (
         ('M', 'Male'),
@@ -70,6 +71,7 @@ class UserProfile(models.Model):
     gender = models.CharField(choices=GENDER, max_length=100, )
 
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
+
     #
     class Meta:
         app_label = 'users'
