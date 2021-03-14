@@ -1,19 +1,36 @@
 services:
   #web is a service name (can type what u want)
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - .:/blog
+      - .:/Blog_API
     ports:
-      - "8000:8000"
+      - "8080:8080"
       - "9200:9200"
     command: bash -c "
       ls &&
-      cd BlogAPI &&
-      python3 manage.py makemigrations &&
-      python3 manage.py migrate --database=users_db &&
-      python3 manage.py migrate &&
-      service rabbitmq-server start &&
-      service rabbitmq-server status &&
-
-      python3 manage.py runserver 0.0.0.0:8000"
+      python3 blog/manage.py makemigrations &&
+      python3 blog/manage.py migrate --database=users_db &&
+      python3 blog/manage.py migrate &&
+      python3 blog/manage.py runserver 0.0.0.0:8080"
+    links:
+      - rabbitmq
+    depends_on:
+      - rabbitmq
+      - db
+  rabbitmq:
+    image: library/rabbitmq:3.8.14-alpine
+    container_name: rbmq01
+    ports:
+    - "5672-5672"
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=dee41dc7ts59ga
+      - POSTGRES_USER=djlbldcxpzonpy
+      - POSTGRES_PASSWORD=27cef3a06ca260dac3ebb5f2d75bb471ce9ed29ec914a5ea08b116c9365bd5c5
+      - POSTGRES_HOST=/home/anonymous203030/Desktop/Blog/blog/src/settings.py
+      - POSTGRES_PORT=5432
+      - POSTGRES_ENGINE=django.db.backends.postgresql_psycopg2
