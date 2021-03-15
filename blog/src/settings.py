@@ -66,20 +66,21 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
-    'users_db': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dee41dc7ts59ga',
-        'USER': 'djlbldcxpzonpy',
-        'PASSWORD': '27cef3a06ca260dac3ebb5f2d75bb471ce9ed29ec914a5ea08b116c9365bd5c5',
-        'HOST': 'ec2-46-137-84-140.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
     }
+    # ,
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'dee41dc7ts59ga',
+    #     'USER': 'djlbldcxpzonpy',
+    #     'PASSWORD': '27cef3a06ca260dac3ebb5f2d75bb471ce9ed29ec914a5ea08b116c9365bd5c5',
+    #     'HOST': 'ec2-46-137-84-140.eu-west-1.compute.amazonaws.com',
+    #     'PORT': '5432',
+    # }
 }
 # 1dc710c73f90ae85ee61b51c6f5e4bba39bbad75242a203d50bc2388e98418bf
 # psql --dbname=d61nc0nbgsq65g --host=ec2-46-137-123-136.eu-west-1.compute.amazonaws.com --port=5432 -U yjqydwjrjcmydr -W
 
-DATABASE_ROUTERS = ['src.routers.AuthRouter', 'src.routers.PrimaryReplicaRouter']
+# DATABASE_ROUTERS = ['src.routers.AuthRouter', 'src.routers.PrimaryReplicaRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

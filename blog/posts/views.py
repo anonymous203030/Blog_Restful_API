@@ -9,18 +9,18 @@ from .serializers import PostSerializer, UserPostRelationSerializer, PostImagesS
 from .permissions import IsOwner
 
 
-
-#POST CREATION
+# POST CREATION
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Posts.objects.all()
     serializer_class = PostSerializer
-    permission_classes = (IsOwner, )
+    permission_classes = (IsOwner,)
+
 
 class PostCreate(generics.CreateAPIView):
     queryset = Posts.objects.all()
     serializer_class = PostSerializer
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
         serializer.validated_data['owner'] = self.request.user
@@ -30,19 +30,19 @@ class PostCreate(generics.CreateAPIView):
 class PostListView(ListAPIView):
     queryset = Posts.objects.all()
     serializer_class = PostSerializer
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
     pagination_class = PageNumberPagination
-    search_fields = ('title', 'content', 'rating', )
+    search_fields = ('title', 'content', 'rating',)
     ordering = ['created_at']
 
 
 class CustomPostViewSet(ListAPIView):
     queryset = Posts.objects.all()
     serializer_class = PostSerializer
-    permission_classes = (IsOwner, )
+    permission_classes = (IsOwner,)
     pagination_class = PageNumberPagination
-    filter_backends = (IsOwnerFilter, )
-    search_fields = ('title', 'content', 'rating', )
+    filter_backends = (IsOwnerFilter,)
+    search_fields = ('title', 'content', 'rating',)
     ordering = ['created_at']
 
 
@@ -59,7 +59,7 @@ class PostImageList(generics.ListAPIView):
     serializer_class = PostImagesSerializer
     permission_classes = [IsAuthenticated]
     pagination_class = PageNumberPagination
-    search_filters = ('post', )
+    search_filters = ('post',)
 
 
 class PostImageDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -67,7 +67,7 @@ class PostImageDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostImagesSerializer
     permission_classes = [IsOwner]
     pagination_class = PageNumberPagination
-    search_filters = ('post', )
+    search_filters = ('post',)
 
 
 # USER-POST RELATION
@@ -77,6 +77,7 @@ class UserPostRelationCreate(generics.CreateAPIView):
     queryset = UserPostRelation.objects.all()
     serializer_class = UserPostRelationSerializer
     permission_classes = [IsAuthenticated]
+
 
 class UserPostRelationList(generics.ListAPIView):
     queryset = UserPostRelation.objects.all()
@@ -97,6 +98,6 @@ class CustomPostRelationList(generics.ListAPIView):
     queryset = UserPostRelation.objects.all()
     serializer_class = UserPostRelationSerializer
     permission_classes = [IsOwner]
-    filter_backends = (IsOwnerFilter, )
+    filter_backends = (IsOwnerFilter,)
     pagination_class = PageNumberPagination
     ordering = ['reacted_at']
