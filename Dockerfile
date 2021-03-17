@@ -10,8 +10,7 @@ RUN apt-get install -y apt-utils
 RUN apt-get install gcc -y
 RUN apt-get clean
 RUN apt-get install -y python-setuptools
-#RUN apt-get install -y rabbitmq-server \
-RUN apt-get install -y postgresql postgresql-contrib
+#RUN apt-get install -y postgresql postgresql-contrib
 RUN apt-get install -y libpq-dev python3-dev
 RUN apt-get install -y systemd
 
