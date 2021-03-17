@@ -16,10 +16,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # new!
+    # apps
     'posts',
     'users',
     'todo.backend.todos',
+
     # 3-rd party
     'rest_framework',
     'drf_yasg',
@@ -66,9 +67,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-    # ,
-    # 'default': {
+    },
+
+    # 'posts_db': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     #     'NAME': 'dee41dc7ts59ga',
     #     'USER': 'djlbldcxpzonpy',
@@ -80,7 +81,8 @@ DATABASES = {
 # 1dc710c73f90ae85ee61b51c6f5e4bba39bbad75242a203d50bc2388e98418bf
 # psql --dbname=d61nc0nbgsq65g --host=ec2-46-137-123-136.eu-west-1.compute.amazonaws.com --port=5432 -U yjqydwjrjcmydr -W
 
-# DATABASE_ROUTERS = ['src.routers.AuthRouter', 'src.routers.PrimaryReplicaRouter']
+# DATABASE_ROUTERS = ['src.routers.AuthRouter']
+# 'src.routers.PrimaryReplicaRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -126,7 +128,6 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 
 }
-# AUTH_USER_MODEL = "user_data.User"
 
 LOGIN_URL = 'admin/login/'
 LOGOUT_URL = 'admin/logout/'
@@ -136,3 +137,4 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
+
