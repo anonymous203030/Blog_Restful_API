@@ -12,7 +12,6 @@ services:
     command: bash -c "
       ls &&
       python3 blog/manage.py makemigrations &&
-      python3 blog/manage.py migrate --database=users_db &&
       python3 blog/manage.py migrate &&
       python3 blog/manage.py runserver 0.0.0.0:8080"
     links:

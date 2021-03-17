@@ -12,3 +12,7 @@ Pillow==8.1.2
 Celery==5.0.0
 redis==3.5.3
 psycopg2==2.8.6
+# Heroku
+gunicorn==20.0.4
+whitenoise==5.2.0
+SQLAlchemy==1.4.0
